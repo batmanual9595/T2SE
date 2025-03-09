@@ -9,6 +9,7 @@ public class DeerStateMachine : MonoBehaviour
     private bool isAlive;
 
     public Rigidbody rb;
+    [SerializeField] private ParticleSystem explosion; 
 
     public bool IsGrounded { get; set; } = true;
     private Animator animator;
@@ -72,6 +73,13 @@ public class DeerStateMachine : MonoBehaviour
         deadCam.Priority = 1;
         animator.SetTrigger("Death");
         animator.enabled = false;
+        Invoke(nameof(GameOver), 3f);
+    }
+
+    void GameOver()
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 
     void OnCollisionEnter(Collision c)

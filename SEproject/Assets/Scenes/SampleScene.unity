@@ -1787,6 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  explosion: {fileID: 8079765038003239640, guid: 3fb749fb6e5477147b5cc992a36f3df0, type: 3}
   mainCam: {fileID: 1154850457}
   deadCam: {fileID: 1911068455}
   ragdollController: {fileID: 919132148002979123}
