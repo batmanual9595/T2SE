@@ -116,7 +116,7 @@ public class CarBehavior : MonoBehaviour
         Vector3 targetPosition = player.transform.position;
         Vector3 swerveOffset = transform.right * swerveDirection * swerveAmount;
         enemy.SetDestination(targetPosition + swerveOffset);
-    }
+    }   
 
     void Blockade()
     {
@@ -138,7 +138,6 @@ public class CarBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision);
         if (collision.gameObject.tag == "Car")
         {
             audioSource.PlayOneShot(explosionSound);
