@@ -81,6 +81,7 @@ public class DeerStateMachine : MonoBehaviour
         {
             ActivateDeath();
             ragdollController.SetRagdoll(true);
+            GetComponent<DeerHealth>().TakeDamage();
             isAlive = false;
         }
     }
