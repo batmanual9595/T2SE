@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    public GameObject[] carPrefabs; // Array to hold different car prefabs
-    public Transform spawnPoint; // The location where cars will spawn
-    public float spawnInterval = 3f; // Time between spawns
+    public GameObject[] carPrefabs;
+    public Transform player;      
+    public float spawnRadius = 10f;  
+    public float spawnInterval = 3f;
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnCar), 0f, spawnInterval); // Spawn cars periodically
+        InvokeRepeating(nameof(SpawnCar), 0f, spawnInterval);
     }
 
     void SpawnCar()
     {
         if (carPrefabs.Length == 0) return;
 
-        // Choose a random car prefab
         GameObject carPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
 
-        // Instantiate the car at the spawn point
-        GameObject newCar = Instantiate(carPrefab, spawnPoint.position, spawnPoint.rotation);
+        Vector3 randomPosition = player.position + Random.insideUnitSphere * spawnRadius;
+        randomPosition.y = player.position.y;
 
-        // Assign a random color to the car
-        AssignRandomColor(newCar);
+        GameObject newCar = Instantiate(carPrefab, randomPosition, Quaternion.identity);
+
+        // AssignRandomColor(newCar);
     }
 
     void AssignRandomColor(GameObject car)
     {
-        Renderer[] renderers = car.GetComponentsInChildren<Renderer>(); // Get all renderers
+        Renderer[] renderers = car.GetComponentsInChildren<Renderer>();
 
-        Color randomColor = new Color(Random.value, Random.value, Random.value); // Generate a random color
+        Color randomColor = new Color(Random.value, Random.value, Random.value);
 
         foreach (Renderer renderer in renderers)
         {
-            renderer.material.color = randomColor; // Apply color to all renderers
+            renderer.material.color = randomColor;
         }
     }
 }
