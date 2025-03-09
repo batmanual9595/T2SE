@@ -64,10 +64,12 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ragdollToggle.cs" />
     <Compile Include="Assets\script\DeerPlayer.cs" />
+    <Compile Include="Assets\script\state machines\DeerJump.cs" />
+    <Compile Include="Assets\CarSpawner.cs" />
     <Compile Include="Assets\script\state machines\DeerWalk.cs" />
     <Compile Include="Assets\script\RagdollController.cs" />
+    <Compile Include="Assets\script\CarBehavior.cs" />
     <Compile Include="Assets\script\Camera.cs" />
     <Compile Include="Assets\script\state machines\DeerSprint.cs" />
     <Compile Include="Assets\script\DeathCamFollow.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="Assets\script\MovingBlock.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
+    <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
     <None Include="Assets\ithappy\Animals_FREE\Render_Pipeline_Convert\Documentation.txt" />
   </ItemGroup>
   <ItemGroup>

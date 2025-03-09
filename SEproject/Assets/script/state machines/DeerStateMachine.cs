@@ -18,6 +18,9 @@ public class DeerStateMachine : MonoBehaviour
 
     [SerializeField] RagdollController ragdollController;
 
+    [SerializeField] public LayerMask groundLayer;
+    public LayerMask GroundLayer => groundLayer;
+
     void Start()
     {
         mainCam.Priority = 1;
@@ -74,7 +77,7 @@ public class DeerStateMachine : MonoBehaviour
     void OnCollisionEnter(Collision c)
     {
         IsGrounded = true;
-        if (c.gameObject.tag == "Obstacle")
+        if (c.gameObject.tag == "Car")
         {
             ActivateDeath();
             ragdollController.SetRagdoll(true);
