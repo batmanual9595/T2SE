@@ -41,7 +41,7 @@ public class CarBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Car"))
+        if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("Obstacle"))
         {
             audioSource.PlayOneShot(explosionSound);
             Instantiate(explosion, transform.position, Quaternion.identity);

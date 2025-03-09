@@ -44,7 +44,7 @@ public class DeerSprint : IDeerState
     }
     public void handleSpace()
     {
-        deer.setState(new DeerJump(deer, speed, deer.groundLayer));
+        deer.setState(new DeerJump(deer, speed));
     }
     public void handleShift()
     {

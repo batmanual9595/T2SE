@@ -37,7 +37,7 @@ public class DeerWalk : IDeerState
         deer.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
     public void handleSpace(){
-        deer.setState(new DeerJump(deer, speed, deer.groundLayer));
+        deer.setState(new DeerJump(deer, speed));
     }
     public void handleShift(){
         deer.setState(new DeerSprint(deer));
