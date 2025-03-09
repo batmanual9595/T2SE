@@ -11,6 +11,4 @@ public interface IDeerState
     public virtual void handleSpace(){}
     public virtual void handleShift(){}
     public virtual void advanceState(){}
-
-    
 }
