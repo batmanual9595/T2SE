@@ -28,7 +28,12 @@ public class RagdollController : MonoBehaviour
         {
             rb.isKinematic = !activate;
             rb.detectCollisions = activate;
-            rb.velocity = Vector3.zero; // Reset velocity
+
+            if (!activate) // Reset all physics when deactivating ragdoll
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
         }
 
         if (activate && launchUp && mainRagdollBody != null)
@@ -37,6 +42,7 @@ public class RagdollController : MonoBehaviour
             mainRagdollBody.AddForce(Vector3.up * launchPower, ForceMode.Impulse);
         }
     }
+
 
     void DisableCollisionsTemporarily()
     {

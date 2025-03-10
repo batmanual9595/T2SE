@@ -5,9 +5,10 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public Image[] heartIcons; 
-    public GameObject gameOverScreen; 
+    public Image[] heartIcons;
+    public GameObject gameOverScreen;
     public Button respawnButton;
+    public Button restartButton;
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     {
         FindObjectOfType<DeerHealth>().OnHealthChanged += UpdateHealthUI;
         respawnButton.onClick.AddListener(Respawn);
+        restartButton.onClick.AddListener(RestartGame);
         gameOverScreen.SetActive(false);
     }
 
@@ -35,6 +37,17 @@ public class UIManager : MonoBehaviour
     }
 
     private void Respawn()
+    {
+        DeerHealth deerHealth = FindObjectOfType<DeerHealth>();
+
+        if (deerHealth != null && deerHealth.maxHearts > 0)
+        {
+            deerHealth.Respawn();
+            gameOverScreen.SetActive(false);
+        }
+    }
+
+    private void RestartGame()
     {
         FindObjectOfType<DeerHealth>().ResetHealth();
         gameOverScreen.SetActive(false);
