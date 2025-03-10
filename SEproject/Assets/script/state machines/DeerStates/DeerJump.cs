@@ -15,7 +15,7 @@ public class DeerJump : IDeerState
     private float maxSpeed = 6f;
     private bool jumped=false;
     
-    public DeerJump(DeerStateMachine deer, float speed, LayerMask groundLayer){
+    public DeerJump(DeerStateMachine deer, float speed){
         this.deer = deer;
         rb = deer.rb;
         this.speed = speed;
@@ -31,13 +31,13 @@ public class DeerJump : IDeerState
         }
     }
     public void handleForward(){
-        // rb.AddForce(deer.transform.forward*100, ForceMode.Impulse);
-        // rb.velocity = new Vector3(deer.transform.forward.x * speed, rb.velocity.y, deer.transform.forward.z * speed);
+        rb.AddForce(deer.transform.forward*100, ForceMode.Impulse);
+        rb.velocity = new Vector3(deer.transform.forward.x * speed/2, rb.velocity.y, deer.transform.forward.z * speed/2);
 
-        // if (rb.velocity.magnitude > 2*maxSpeed)
-        // {
-        //     rb.velocity = rb.velocity.normalized * 2*maxSpeed;
-        // }
+        if (rb.velocity.magnitude > 2*maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized *maxSpeed;
+        }
     }
     public void handleLeft(){
         // can't turn

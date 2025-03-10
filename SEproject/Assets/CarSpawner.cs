@@ -6,7 +6,8 @@ public class CarSpawner : MonoBehaviour
 {
     public GameObject[] carPrefabs;
     public Transform player;      
-    public float spawnRadius = 10f;  
+    public float minSpawnDistance = 5f;
+    public float maxSpawnDistance = 10f;
     public float spawnInterval = 3f;
 
     private void Start()
@@ -20,12 +21,13 @@ public class CarSpawner : MonoBehaviour
 
         GameObject carPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
 
-        Vector3 randomPosition = player.position + Random.insideUnitSphere * spawnRadius;
-        randomPosition.y = player.position.y;
+        float spawnDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+        Vector3 randomDirection = Random.onUnitSphere;
+        randomDirection.y = 0;
+
+        Vector3 randomPosition = player.position + randomDirection * spawnDistance;
 
         GameObject newCar = Instantiate(carPrefab, randomPosition, Quaternion.identity);
-
-        // AssignRandomColor(newCar);
     }
 
     void AssignRandomColor(GameObject car)

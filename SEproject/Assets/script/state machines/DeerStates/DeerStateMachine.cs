@@ -21,6 +21,9 @@ public class DeerStateMachine : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
     public LayerMask GroundLayer => groundLayer;
 
+    [SerializeField] private float jumpCooldown = 1f;  // Cooldown time in seconds
+    private float lastJumpTime = 0f;  // Time of the last jump
+
     void Start()
     {
         mainCam.Priority = 1;
@@ -51,15 +54,21 @@ public class DeerStateMachine : MonoBehaviour
         animator.SetFloat("speed", rb.velocity.magnitude);
         if (isAlive)
         {
+            // Only allow jumping if the cooldown has elapsed
+            if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastJumpTime >= jumpCooldown)
+            {
+                deerState.handleSpace();
+                lastJumpTime = Time.time;  // Reset jump timer
+            }
+
             if (Input.GetKey(KeyCode.W)) deerState.handleForward();
             if (Input.GetKey(KeyCode.A)) deerState.handleLeft();
             if (Input.GetKey(KeyCode.D)) deerState.handleRight();
-            if (Input.GetKeyDown(KeyCode.Space)) deerState.handleSpace();
             if (Input.GetKeyDown(KeyCode.LeftShift)) deerState.handleShift();
         }
         deerState.handleGravity();
         deerState.advanceState();
-        //Debug.Log(rb.velocity.magnitude);
+
         if (Input.GetKey(KeyCode.P))
         {
             ActivateDeath();
